@@ -37,10 +37,28 @@
 			background-image: url('ghost2.png');
 			display: inline-block;
 		}
-		.pacman {
+		.pacmanLeft {
 			width: 50px;
 			height: 50px;
-			background-image: url('pacman.png');
+			background-image: url('pacman_left.png');
+			display: inline-block;
+		}
+		.pacmanRight {
+			width: 50px;
+			height: 50px;
+			background-image: url('pacman_right.png');
+			display: inline-block;
+		}
+		.pacmanTop {
+			width: 50px;
+			height: 50px;
+			background-image: url('pacman_top.png');
+			display: inline-block;
+		}
+		.pacmanDown {
+			width: 50px;
+			height: 50px;
+			background-image: url('pacman_down.png');
 			display: inline-block;
 		}
 
@@ -68,10 +86,10 @@
 		[1,1,1,1,1,1,1,1,1,1,1,1,1], 
 		[1,2,4,2,2,2,1,2,2,2,2,2,1], 
 		[1,2,1,1,1,2,1,2,1,1,1,2,1], 
-		[1,2,1,2,2,2,2,2,4,2,1,2,1], 
-		[1,2,6,2,1,1,5,1,1,2,2,2,1], 
+		[1,2,1,5,2,2,2,2,4,2,1,2,1], 
+		[1,2,2,2,1,1,7,1,1,2,2,2,1], 
 		[1,2,1,2,2,2,2,2,2,2,1,2,1], 
-		[1,2,1,1,2,2,1,2,2,1,1,6,1], 
+		[1,2,1,1,2,2,1,2,2,1,1,5,1], 
 		[1,2,2,4,2,2,1,2,2,2,2,2,1], 
 		[1,1,1,1,1,1,1,1,1,1,1,1,1]
 	]
@@ -95,10 +113,19 @@
 					el.innerHTML += "<div class='ghost1'></div>";
 				}
 				else if (map[y][x] === 5) {
-					el.innerHTML += "<div class='pacman'></div>";
+					el.innerHTML += "<div class='ghost2'></div>";
 				}
 				else if (map[y][x] === 6) {
-					el.innerHTML += "<div class='ghost2'></div>";
+					el.innerHTML += "<div class='pacmanLeft'></div>";
+				}
+				else if (map[y][x] === 7) {
+					el.innerHTML += "<div class='pacmanRight'></div>";
+				}
+				else if (map[y][x] === 8) {
+					el.innerHTML += "<div class='pacmanTop'></div>";
+				}
+				else if (map[y][x] === 9) {
+					el.innerHTML += "<div class='pacmanDown'></div>";
 				}
 			}
 			el.innerHTML += "<br>";
@@ -106,6 +133,17 @@
 	}
 
 	drawWorld();
+
+	function checkWorld(){
+		for (var i = 0;i<map.length;i++){
+			for (var j = 0;j<map[i].length;j++){
+				if (map[i][j]===2){
+					return;
+				}
+			}
+		}
+		console.log("Won");
+	}
 
 	document.onkeydown = function(event){
 
@@ -116,7 +154,8 @@
 				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===6){
 					console.log("Game Over");
 				}
-				map[pacman.y][pacman.x] = 5;
+				map[pacman.y][pacman.x] = 6;
+				checkWorld();
 				drawWorld();
 			}
 		}
@@ -127,7 +166,8 @@
 				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===6){
 					console.log("Game Over");
 				}
-				map[pacman.y][pacman.x] = 5;
+				map[pacman.y][pacman.x] = 8;
+				checkWorld();
 				drawWorld();
 			}
 		}
@@ -138,7 +178,8 @@
 				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===6){
 					console.log("Game Over");
 				}
-				map[pacman.y][pacman.x] = 5;
+				map[pacman.y][pacman.x] = 7;
+				checkWorld();
 				drawWorld();
 			}
 		}
@@ -149,7 +190,8 @@
 				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===6){
 					console.log("Game Over");
 				}
-				map[pacman.y][pacman.x] = 5;
+				map[pacman.y][pacman.x] = 9;
+				checkWorld();
 				drawWorld();
 			}
 		}
