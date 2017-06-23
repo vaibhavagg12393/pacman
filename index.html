@@ -61,6 +61,18 @@
 			background-image: url('pacman_down.png');
 			display: inline-block;
 		}
+		.gameover {
+			width: 500px;
+			height: 360px;
+			background-image: url('gameover.jpg');
+			display: inline-block;
+		}
+		.won {
+			width: 300px;
+			height: 200px;
+			background-image: url('won.jpg');
+			display: inline-block;
+		}
 
 		div {
 			line-height: 0px;
@@ -143,6 +155,7 @@
 			}
 		}
 		console.log("Won");
+		document.getElementById('world').innerHTML="<div class='won'></div>";
 	}
 
 	document.onkeydown = function(event){
@@ -151,48 +164,52 @@
 			if ( map[pacman.y][pacman.x-1] !== 1){
 				map[pacman.y][pacman.x] = 3;
 				pacman.x = pacman.x - 1;
-				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===6){
-					console.log("Game Over");
+				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===5){
+					document.getElementById('world').innerHTML="<div class='gameover'></div>";
+					return;
 				}
 				map[pacman.y][pacman.x] = 6;
-				checkWorld();
 				drawWorld();
+				checkWorld();
 			}
 		}
 		else if (event.keyCode === 38){ // PACMAN MOVE UP
 			if ( map[pacman.y-1][pacman.x] !== 1){
 				map[pacman.y][pacman.x] = 3;
 				pacman.y = pacman.y - 1;
-				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===6){
-					console.log("Game Over");
+				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===5){
+					document.getElementById('world').innerHTML="<div class='gameover'></div>";
+					return;
 				}
 				map[pacman.y][pacman.x] = 8;
-				checkWorld();
 				drawWorld();
+				checkWorld();
 			}
 		}
 		else if (event.keyCode === 39){ // PACMAN MOVE RIGHT
 			if ( map[pacman.y][pacman.x+1] !== 1){
 				map[pacman.y][pacman.x] = 3;
 				pacman.x = pacman.x + 1;
-				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===6){
-					console.log("Game Over");
+				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===5){
+					document.getElementById('world').innerHTML="<div class='gameover'></div>";
+					return;
 				}
 				map[pacman.y][pacman.x] = 7;
-				checkWorld();
 				drawWorld();
+				checkWorld();
 			}
 		}
 		else if (event.keyCode === 40){ // PACMAN MOVE DOWN
 			if ( map[pacman.y+1][pacman.x] !== 1){
 				map[pacman.y][pacman.x] = 3;
 				pacman.y = pacman.y + 1;
-				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===6){
-					console.log("Game Over");
+				if (map[pacman.y][pacman.x]===4 || map[pacman.y][pacman.x]===5){
+					document.getElementById('world').innerHTML="<div class='gameover'></div>";
+					return;
 				}
 				map[pacman.y][pacman.x] = 9;
-				checkWorld();
 				drawWorld();
+				checkWorld();
 			}
 		}
 		// console.log(map)
